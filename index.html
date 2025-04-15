@@ -1,18 +1,131 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LKH is GAY</title>
+    <title>okay.</title>
     <style>
-    h1{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);}
-    *{font-family:system-ui;}
+        h1 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        * {
+            font-family: system-ui;
+        }
+
+        div.page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        input {
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 50px;
+            border-radius: 50px;
+            border: 2px solid #000;
+            background: #fff;
+            color: #000;
+            
+        }
+
+        .page1 {
+            background: #000;
+
+        }
+
+        .page1 {
+            color: white;
+        }
+
+        button{
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50px;
+            padding: 10px 20px;
+            background: #000;
+            outline: none;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            
+        }
+
+        button:hover{
+            background-color: white;
+            color: black;
+        }
     </style>
 </head>
+
 <body>
-    <h1 contenteditable="true" >LKH is Gay</h1>
-    <a></a>
+    <div class="page1 page">
+
+        <h1></h1>
+        <p class="center">V1.0.2</p>
+        <h1>Welcome</h1>
+        <input type="text" name="" id="" placeholder="Enter the password"
+            onkeydown="if(event.key === 'Enter') { passwordLogged(); }">
+        <button onclick=" passwordLogged();">Log In</button>
+
+
+    </div>
+    <div class="page2 page">
+
+        <a></a>
+        <h3>Lkh的群</h3>
+        <h1 contenteditable="true">LKH is Gay</h1>
+
+    </div>
     <script>
-        document.querySelector('a').innerHTML = `Rememeber this link to stay alert: ${window.location.href}`
+        document.querySelector('a').innerHTML = ` ${window.location.href}`
+        const pageOne = document.querySelector('.page1');
+        const pageTwo = document.querySelector('.page2');
+        const pageThree = document.querySelector('.page3');
+
+        page(1);
+
+        function page(x) {
+            if (x === 1) {
+                pageOne.style.display = 'block';
+                pageTwo.style.display = 'none';
+                pageThree.style.display = 'none';
+            }
+            if (x === 2) {
+                pageOne.style.display = 'none';
+                pageTwo.style.display = 'block';
+                pageThree.style.display = 'none';
+            }
+        }
+
+        function passwordLogged() {
+            if (document.querySelector('input').value === '相亲相爱麻将馆') {
+                page(2);
+            } else if (document.querySelector('input').value === '') {
+                alert('Please enter the password!');
+            } else if (document.querySelector('input').value === 'forget') {
+                alert('walaueh 你不记得了啊 相亲相爱麻将馆 不是meh');
+            }
+            else {
+                alert('Wrong password!');
+            }
+        }
     </script>
 </body>
+
 </html>
