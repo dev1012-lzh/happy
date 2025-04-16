@@ -1,4 +1,23 @@
 <html lang="en">
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+    
+    const firebaseConfig = {
+        apiKey: "AIzaSyBRGgerCt3O17myLSvTIc91buE-kq9296k",
+        authDomain: "okay-3754e.firebaseapp.com",
+        projectId: "okay-3754e",
+        storageBucket: "okay-3754e.firebasestorage.app",
+        messagingSenderId: "882375202470",
+        appId: "1:882375202470:web:5077212946a8319a670667",
+        measurementId: "G-X99V2V6PN1"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+</script>
 
 <head>
     <meta charset="UTF-8">
@@ -149,6 +168,7 @@
 
 
 
+
     </div>
     <div class="page2 page">
 
@@ -175,9 +195,14 @@
             <button onclick="rememberThisUser(this);" class="primary saveThisUser">记得我，以后password不用打。</button>
 
         </div>
+        <input id="messageInput" type="text" placeholder="Type a message">
+        <button onclick="sendMessage()">Send</button>
+        <div id="chat"></div>
 
     </div>
+
     <script>
+
 
         const pageOne = document.querySelector('.page1');
         const pageTwo = document.querySelector('.page2');
@@ -273,7 +298,16 @@
 
         setInterval(changeText, 300);
 
-        
+        function sendMessage() {
+            const message = document.getElementById("messageInput").value;
+            push(ref(database, "messages"), { text: message });
+        }
+
+        onChildAdded(ref(database, "messages"), function (snapshot) {
+            const msg = snapshot.val().text;
+            document.getElementById("chat").innerHTML += `<p>${msg}</p>`;
+        });
+
     </script>
 </body>
 
