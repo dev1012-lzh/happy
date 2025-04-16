@@ -3,6 +3,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
     import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
 
+
     const firebaseConfig = {
         apiKey: "AIzaSyBRGgerCt3O17myLSvTIc91buE-kq9296k",
         authDomain: "okay-3754e.firebaseapp.com",
@@ -14,8 +15,12 @@
     };
 
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
+    
     const database = getDatabase(app);
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    const app = initializeApp(firebaseConfig);
+    console.log(app);
 
 </script>
 
