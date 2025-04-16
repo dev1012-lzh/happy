@@ -15,10 +15,9 @@
     };
 
     // Initialize Firebase
-    
-    const database = getDatabase(app);
+    const app = initializeApp(firebaseConfig); // ✅ Initialize Firebase first
+    const database = getDatabase(app); // ✅ Now it's safe to use
 
-    const app = initializeApp(firebaseConfig);
     console.log(app);
 
 </script>
@@ -301,11 +300,11 @@
         }
 
         setInterval(changeText, 300);
-
         function sendMessage() {
             const message = document.getElementById("messageInput").value;
             push(ref(database, "messages"), { text: message });
         }
+
 
         const messagesRef = ref(database, "messages");
 
