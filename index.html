@@ -2,7 +2,7 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
     import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
-    
+
     const firebaseConfig = {
         apiKey: "AIzaSyBRGgerCt3O17myLSvTIc91buE-kq9296k",
         authDomain: "okay-3754e.firebaseapp.com",
@@ -303,10 +303,13 @@
             push(ref(database, "messages"), { text: message });
         }
 
-        onChildAdded(ref(database, "messages"), function (snapshot) {
+        const messagesRef = ref(database, "messages");
+
+        onChildAdded(messagesRef, (snapshot) => {
             const msg = snapshot.val().text;
             document.getElementById("chat").innerHTML += `<p>${msg}</p>`;
         });
+
 
     </script>
 </body>
