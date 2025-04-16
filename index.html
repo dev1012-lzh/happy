@@ -1,40 +1,37 @@
 <html lang="en">
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-    import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+<script type="module">import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
 
-    let database; // ✅ Declare globally
-    let messagesRef;
+let database;
+let messagesRef;
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const firebaseConfig = {
-            apiKey: "AIzaSyBRGgerCt3O17myLSvTIc91buE-kq9296k",
-            authDomain: "okay-3754e.firebaseapp.com",
-            projectId: "okay-3754e",
-            storageBucket: "okay-3754e.firebasestorage.app",
-            messagingSenderId: "882375202470",
-            appId: "1:882375202470:web:5077212946a8319a670667",
-            measurementId: "G-X99V2V6PN1"
-        };
+document.addEventListener("DOMContentLoaded", () => {
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT.firebaseapp.com",
+        projectId: "YOUR_PROJECT",
+        storageBucket: "YOUR_PROJECT.appspot.com",
+        messagingSenderId: "YOUR_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
 
-        const app = initializeApp(firebaseConfig);
-        database = getDatabase(app); // ✅ Assign it globally
-        messagesRef = ref(database, "messages"); // ✅ Define `messagesRef` globally
+    const app = initializeApp(firebaseConfig);
+    database = getDatabase(app);
+    messagesRef = ref(database, "messages");
 
-        console.log("Firebase initialized!", app);
+    console.log("Firebase initialized!", app);
 
-        onChildAdded(messagesRef, (snapshot) => {
-            const msg = snapshot.val().text;
-            document.getElementById("chat").innerHTML += `<p>${msg}</p>`;
-        });
+    onChildAdded(messagesRef, (snapshot) => {
+        const msg = snapshot.val().text;
+        document.getElementById("chat").innerHTML += `<p>${msg}</p>`;
     });
+});
 
-    function sendMessage() {
-        const message = document.getElementById("messageInput").value;
-        push(messagesRef, { text: message }); // ✅ Use global `messagesRef`
-    }
-
-
+// ✅ Move `sendMessage()` outside so the button can access it globally
+function sendMessage() {
+    const message = document.getElementById("messageInput").value;
+    push(messagesRef, { text: message });
+}
 
 </script>
 
