@@ -4,6 +4,7 @@
     import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
 
 
+
     const firebaseConfig = {
         apiKey: "AIzaSyBRGgerCt3O17myLSvTIc91buE-kq9296k",
         authDomain: "okay-3754e.firebaseapp.com",
@@ -14,9 +15,12 @@
         measurementId: "G-X99V2V6PN1"
     };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig); // ✅ Initialize Firebase first
-    const database = getDatabase(app); // ✅ Now it's safe to use
+
+
+    const app = initializeApp(firebaseConfig); // ✅ Initialize Firebase FIRST
+    const database = getDatabase(app); // ✅ Get database reference
+
+    const messagesRef = ref(database, "messages"); // ✅ Ensure 'ref' is correctly used
 
     console.log(app);
 
@@ -306,7 +310,7 @@
         }
 
 
-        const messagesRef = ref(database, "messages");
+
 
         onChildAdded(messagesRef, (snapshot) => {
             const msg = snapshot.val().text;
